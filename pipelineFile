@@ -17,6 +17,8 @@ node {
     }
 
     stage('Build'){
+        sh "pwd"
+        sh "ls -lrt"
         dir("folder") {
             sh "cd myapp"
             sh "npm install"

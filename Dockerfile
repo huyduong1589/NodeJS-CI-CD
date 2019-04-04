@@ -1,13 +1,11 @@
 FROM jelastic/nodejs:latest
 
-COPY pom.xml pipeline/
+COPY myapp/ opt/
 
-COPY src/ pipeline/src/
+WORKDIR opt/myapp/
 
-WORKDIR pipeline/
-
-RUN mvn clean install
+RUN npm install
 
 EXPOSE 3000
 
-ENTRYPOINT [ "java", "-jar", "/pipeline/target/jenkins-pipeline.jar"]
+ENTRYPOINT [ "npm", "start"]

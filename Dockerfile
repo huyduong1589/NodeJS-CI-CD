@@ -1,4 +1,4 @@
-FROM maven:3-alpine
+FROM jelastic/nodejs:latest
 
 COPY pom.xml pipeline/
 
@@ -8,6 +8,6 @@ WORKDIR pipeline/
 
 RUN mvn clean install
 
-EXPOSE 8090
+EXPOSE 3000
 
 ENTRYPOINT [ "java", "-jar", "/pipeline/target/jenkins-pipeline.jar"]

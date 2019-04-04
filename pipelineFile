@@ -17,8 +17,10 @@ node {
     }
 
     stage('Build'){
-        sh "cd myapp"
-        sh "npm install"
+        dir("folder") {
+            sh "cd myapp"
+            sh "npm install"
+        }
     }
 
     stage("Image Prune"){

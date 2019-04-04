@@ -6,12 +6,6 @@ def HTTP_PORT_DOCKER="3000"
 
 node {
 
-    stage('Initialize'){
-        def dockerHome = tool 'myDocker'
-        def mavenHome  = tool 'myMaven'
-        env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
-    }
-
     stage('Checkout') {
         checkout scm
     }

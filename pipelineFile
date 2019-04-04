@@ -6,7 +6,7 @@ def HTTP_PORT_DOCKER="3000"
 
 node {
 
-    stage('Check Docker){
+    stage('Check Docker'){
         sh "docker -v"
     }
 

@@ -6,6 +6,10 @@ def HTTP_PORT_DOCKER="3000"
 
 node {
 
+    stage('Check Docker){
+        sh "docker -v"
+    }
+
     stage('Checkout') {
         checkout scm
     }

@@ -1,7 +1,8 @@
-def CONTAINER_NAME="jenkins-pipeline"
+def CONTAINER_NAME="nodejs-express"
 def CONTAINER_TAG="latest"
-def DOCKER_HUB_USER="vineet0164"
-def HTTP_PORT="8090"
+def DOCKER_HUB_USER="huyduong1589"
+def HTTP_PORT_EX="8080"
+def HTTP_PORT_DOCKER="3000"
 
 node {
 
@@ -16,16 +17,9 @@ node {
     }
 
     stage('Build'){
-        sh "mvn clean install"
+        sh "cd myapp"
+        sh "npm install"
     }
-
-    stage('Sonar'){
-        try {
-            sh "mvn sonar:sonar"
-        } catch(error){
-            echo "The sonar server could not be reached ${error}"
-        }
-     }
 
     stage("Image Prune"){
         imagePrune(CONTAINER_NAME)
@@ -42,7 +36,7 @@ node {
     }
 
     stage('Run App'){
-        runApp(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT)
+        runApp(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT_EX, HTTP_PORT_DOCKER)
     }
 
 }
@@ -66,8 +60,8 @@ def pushToImage(containerName, tag, dockerUser, dockerPassword){
     echo "Image push complete"
 }
 
-def runApp(containerName, tag, dockerHubUser, httpPort){
+def runApp(containerName, tag, dockerHubUser, httpPortEX, httpPortDocker){
     sh "docker pull $dockerHubUser/$containerName"
-    sh "docker run -d --rm -p $httpPort:$httpPort --name $containerName $dockerHubUser/$containerName:$tag"
-    echo "Application started on port: ${httpPort} (http)"
+    sh "docker run -d --rm -p $httpPortEX:$httpPortDocker --name $containerName $dockerHubUser/$containerName:$tag"
+    echo "Application started on port: ${httpPortEX} (http)"
 }

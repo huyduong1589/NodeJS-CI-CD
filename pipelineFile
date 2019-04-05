@@ -23,8 +23,8 @@ node {
         }
     }
 
-    stage("Image Prune"){
-        imagePrune(CONTAINER_NAME)
+    stage("Image Clean Up"){
+        imageCleanUp(CONTAINER_NAME)
     }
 
     stage('Image Build'){

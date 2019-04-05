@@ -4,7 +4,7 @@ def DOCKER_HUB_USER="huyduong1589"
 def HTTP_PORT_EX="8080"
 def HTTP_PORT_DOCKER="3000"
 
-node {
+node('AWS-EC2') {
 
     stage('Check Docker'){
         sh "who am i"

@@ -7,7 +7,7 @@ def HTTP_PORT_DOCKER="3000"
 node('AWS-EC2') {
 
     stage('Check Docker'){
-        sh "who am i"
+        sh "whoami"
         sh "docker -v"
     }
 

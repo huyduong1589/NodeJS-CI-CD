@@ -23,6 +23,10 @@ node {
         }
     }
 
+    stage("Image Prune"){
+        imagePrune(CONTAINER_NAME)
+    }
+
     stage('Image Build'){
         imageBuild(CONTAINER_NAME, CONTAINER_TAG)
     }
@@ -37,13 +41,6 @@ node {
         runApp(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT_EX, HTTP_PORT_DOCKER)
     }
 
-}
-
-def imagePrune(containerName){
-    try {
-        sh "docker image prune -f"
-        sh "docker stop $containerName"
-    } catch(error){}
 }
 
 def imageBuild(containerName, tag){
@@ -62,4 +59,11 @@ def runApp(containerName, tag, dockerHubUser, httpPortEX, httpPortDocker){
     sh "sudo docker pull $dockerHubUser/$containerName"
     sh "sudo docker run -d --rm -p $httpPortEX:$httpPortDocker --name $containerName $dockerHubUser/$containerName:$tag"
     echo "Application started on port: ${httpPortEX} (http)"
+}
+
+def imageCleanUp(containerName){
+    try {
+        sh "docker image prune -f"
+        sh "docker stop $containerName"
+    } catch(error){}
 }

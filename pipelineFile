@@ -18,7 +18,7 @@ node('AWS-EC2') {
     stage('Build'){
         sh "pwd"
         sh "ls -lrt"
-        dir("myapp") {
+        dir("firebase-service") {
             sh "npm install"
         }
     }

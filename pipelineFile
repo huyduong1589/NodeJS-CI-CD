@@ -19,6 +19,7 @@ node('AWS-EC2') {
         sh "pwd"
         sh "ls -lrt"
         dir("firebase-service") {
+            sh "npm install grpc --unsafe-perm"
             sh "npm install"
         }
     }

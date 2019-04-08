@@ -39,7 +39,7 @@ node('AWS-EC2') {
 
     stage('Run App'){
         runApp(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT_EX, HTTP_PORT_DOCKER)
-        sh 'sleep 10000'
+        sh 'sleep 10'
     }
 
     stage('Test'){

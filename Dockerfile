@@ -1,8 +1,8 @@
 FROM jelastic/nodejs:latest
 
-COPY myapp/ opt/
+COPY firebase-service/ opt/
 
-WORKDIR opt/myapp/
+WORKDIR opt/firebase-service/
 
 RUN npm install
 

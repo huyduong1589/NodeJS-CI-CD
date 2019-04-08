@@ -8,4 +8,3 @@ RUN npm install -g node-pre-gyp
 
 EXPOSE 3000
 
-ENTRYPOINT [ "npm", "start"]

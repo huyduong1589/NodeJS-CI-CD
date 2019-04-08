@@ -41,6 +41,12 @@ node('AWS-EC2') {
         runApp(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT_EX, HTTP_PORT_DOCKER)
     }
 
+    stage('Test'){
+        dir("firebase-service") {
+            sh "node test/login_test.js"
+        }
+    }
+
 }
 
 def imageBuild(containerName, tag){

@@ -1,8 +1,12 @@
 FROM jelastic/nodejs:latest
 
-COPY firebase-service/ opt/
+COPY firebase-service/ opt/firebase-service
 
 WORKDIR opt/firebase-service/
+
+RUN npm install grpc --unsafe-perm
+
+RUN npm install 
 
 EXPOSE 3000
 

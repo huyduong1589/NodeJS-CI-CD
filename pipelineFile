@@ -6,7 +6,7 @@ def HTTP_PORT_DOCKER="3000"
 
 node('AWS-EC2')
     environment {
-        PATH=$PATH:/home/ec2-user/sonar/bin
+        PATH = "$PATH:/home/ec2-user/sonar/bin"
     }
     {
     stage('Check Docker'){

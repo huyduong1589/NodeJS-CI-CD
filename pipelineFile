@@ -5,10 +5,10 @@ def HTTP_PORT_EX="8080"
 def HTTP_PORT_DOCKER="3000"
 
 node('AWS-EC2')
-    environment {
+    {
+            environment {
         PATH = "$PATH:/home/ec2-user/sonar/bin"
     }
-    {
     stage('Check Docker'){
         sh "whoami"
         sh "docker -v"

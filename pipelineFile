@@ -24,12 +24,8 @@ node('AWS-EC2')
     }
 
     stage('Sonar Scan'){
-                    environment {
-        PATH = "$PATH:/home/ec2-user/sonar/bin"
-    }
         dir("firebase-service") {
-            sh "echo $PATH"
-            sh "sonar-scanner -Dsonar.projectKey=huyduong1589_NodeJS-CI-CD -Dsonar.organization=huyduong1589-github -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=e63d99d80175120fb23aabb8b17bac23a101de72"
+            sh "export PATH=$PATH:/home/ec2-user/sonar/bin && sonar-scanner -Dsonar.projectKey=huyduong1589_NodeJS-CI-CD -Dsonar.organization=huyduong1589-github -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=e63d99d80175120fb23aabb8b17bac23a101de72"
         }
     }
 

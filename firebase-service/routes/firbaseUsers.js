@@ -33,7 +33,7 @@ router.post('/create', async function(req, res, next) {
             message = error.message;
             console.log("ERROR MESSAGE --- " + message);
           });
-      };
+      }
     })
   }
   }
@@ -70,7 +70,7 @@ router.post('/signin', async function(req, res, next){
           message = "login successfully!";
           uid = user.uid;
         }
-      };
+      }
     })
   }
   res.send({ returnCode: errorCode, message: message, uid: uid, email: email });

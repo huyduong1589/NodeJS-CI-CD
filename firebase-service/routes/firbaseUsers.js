@@ -67,7 +67,7 @@ router.post('/signin', async function(req, res, next){
         }
         else {
           errorCode = "OK";
-          message = "login successfully!";
+          message = "successfully";
           uid = user.uid;
         }
       }
